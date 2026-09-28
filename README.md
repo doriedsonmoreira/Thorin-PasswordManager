@@ -1,2 +1,2 @@
-# PasswordManager
+# Thorin-PasswordManager
 Security for your credentials
