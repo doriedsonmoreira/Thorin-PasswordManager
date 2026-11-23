@@ -1,7 +1,13 @@
-node_modules
+# Dependencies
+node_modules/
+
+# Environment variables
 .env
+.env.*
+!.env.example
+
+# Build & generated files
 dist/
-/src/generated/prisma
-.agents/
-.claude/
-.windsurf/
+coverage/
+*.tsbuildinfo
+/src/generated/prisma/
