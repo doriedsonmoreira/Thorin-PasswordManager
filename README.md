@@ -308,3 +308,5 @@ A API estará disponível em `http://localhost:3000`.
 ## Licença
 
 Este projeto está licenciado sob a **MIT License** — consulte o arquivo [LICENSE](./LICENSE) para mais detalhes.
+# Thorin-PasswordManager
+Security for your credentials
