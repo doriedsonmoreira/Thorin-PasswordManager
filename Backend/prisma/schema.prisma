@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+model User {
+  id  String @id @default(uuid()) @db.Uuid
+  name  String @db.VarChar(255)
+  email String @unique @db.VarChar(255)
+  password  String @db.VarChar(255)
+  salt String @db.VarChar(255)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  credentials Credentials[]
+
+  @@map("users")
+}
+
+model Credentials{
+  id  String @id @default(uuid()) @db.Uuid
+  title String @db.VarChar(255)
+  usernameOrEmail String @db.VarChar(255)
+  password String @db.VarChar(255)
+  userId String @db.Uuid
+  appId String @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  app App @relation(fields: [appId], references: [id], onDelete: Restrict)
+
+  @@map("credentials")
+}
+
+model App{
+  id  String @id @default(uuid()) @db.Uuid
+  name String @db.VarChar(255)
+  imageUrl String? @map("image_url")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  credentials Credentials[]
+
+  @@map("apps")
+}
+
